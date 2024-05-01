@@ -107,40 +107,43 @@ def construct(n,xn,yn):
 st.title("Polynomial Interpolation and Regression")
 x = []
 y = []
-flag=0
+flag = 0
+
 sx = st.text_input("Enter the x values")
 sy = st.text_input("Enter the y values")
 nx = sx.split(",")
 ny = sy.split(",")
 
 a = st.button("Construct")
-b = st.button("Use Data ")
+b = st.button("Use Data")
+
 if a:
     for i in range(len(nx)):
         x.append(float(nx[i]))
         y.append(float(ny[i]))
     for i in range(len(x)):
-        if x[i]==0:
-            con=y[i]
+        if x[i] == 0:
+            con = y[i]
             y.pop(i)
             x.pop(i)
-            flag=1
+            flag = 1
             break
-    construct(len(x),x,y)
+    construct(len(x), x, y, flag)
+
 if b:
-    x=[]
-    y=[]
-    data=pd.read_csv('Data.csv')
-    kx=data["x"]
-    ky=data["y"]
+    x = []
+    y = []
+    data = pd.read_csv('Data.csv')
+    kx = data["x"]
+    ky = data["y"]
     for i in range(len(kx)):
         x.append(kx[i])
         y.append(ky[i])
     for i in range(len(x)):
-        if x[i]==0:
-            con=y[i]
+        if x[i] == 0:
+            con = y[i]
             y.pop(i)
             x.pop(i)
-            flag=1
+            flag = 1
             break
-    construct(len(x),x,y)
+    construct(len(x), x, y, flag)
